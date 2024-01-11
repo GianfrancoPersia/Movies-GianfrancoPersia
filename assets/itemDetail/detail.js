@@ -12,7 +12,7 @@ movieDetail.innerHTML = `
                 <article class="flex w-3/6 justify-center">
                     <img src="${movies.image}" alt="">
                 </article>
-                <article class="flex flex-col w-3/6 gap-4">
+                <article class="flex flex-col w-3/6 gap-4 pr-14">
                     <h1 class="text-2xl font-bold">${movies.title}</h1>
                     <h2 class="text-xl font-semibold">${movies.tagline}</h2>
                     <p>${movies.genres}</p>

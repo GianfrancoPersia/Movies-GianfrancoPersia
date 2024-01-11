@@ -46,6 +46,7 @@ export function crearOptionsGeneros(genero){
     `
 }
 
+//busca el filtro en el array y muestra las peliculas filtradas
 export function mostrarPeliculas(arrayPeliculas) {
     const cont_peli = document.getElementById("pelicula")
     const peliculasFiltradas = recorrerPeliculas(arrayPeliculas)
