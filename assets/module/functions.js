@@ -1,3 +1,5 @@
+const pelis = peli
+
 export function crearCardPelicula (pelicula){
     return `
         <a href="./itemDetail/detail.html?id=${pelicula.id}" class="flex flex-col h-80 w-52 text-white bg-purple-500 line-clamp-3 hover:opacity-85">
@@ -24,7 +26,12 @@ export function recorrerPeliculas(array){
 
 //filtra el array de peliculass por genero y se fija si incluye el genero seleccionado por el usuario
 export function filtrarPeliculaPorGenero(arrayPeliculas,generoSeleccionado){
-    return arrayPeliculas.filter(pelicula => pelicula.genres.includes(generoSeleccionado))
+    const arrayFiltradoPorGenero = arrayPeliculas.filter(pelicula => pelicula.genres.includes(generoSeleccionado))
+    if (generoSeleccionado == "Select a genre"){
+        return pelis
+    }else{
+        return arrayFiltradoPorGenero
+    }
 }
 
 // filtra y guarda en un array nuevo los generos de todas las peliculas
@@ -56,5 +63,10 @@ export function mostrarPeliculas(arrayPeliculas) {
 
 // filtra el array de peliculas por titulo y retorna la pelicula que incluya en su titulo lo ingresado por el input busqueda
 export function filtrarPeliculaPorNombre(arrayPeliculas,nombreIngresado){
-    return arrayPeliculas.filter(pelicula => pelicula.title.toLowerCase().includes(nombreIngresado.toLowerCase()))
+    const arrayFiltradoPorNombre = arrayPeliculas.filter(pelicula => pelicula.title.toLowerCase().includes(nombreIngresado.toLowerCase()))
+
+    return arrayFiltradoPorNombre
 }
+
+
+

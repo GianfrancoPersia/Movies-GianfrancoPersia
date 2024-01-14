@@ -14,13 +14,15 @@ const $selectGenres = document.getElementById("genres")
 const $selectDefault = document.getElementById("selectDefault")
 
 //boton select -> hace un target value para recibir la opcion seleccionada, la filtra y la muestra
+console
 $selectGenres.addEventListener("input",(e)=>{
     const generoSeleccionado = e.target.value
     if(generoSeleccionado==$selectDefault.value){
         mostrarPeliculas(pelis)
     }else{
         const peliculaFiltradaPorGenero = filtrarPeliculaPorGenero(pelis,generoSeleccionado)
-        mostrarPeliculas(peliculaFiltradaPorGenero)
+        const peliculaFiltradaPorBusquedaYGenero = filtrarPeliculaPorNombre(peliculaFiltradaPorGenero,inputBusqueda.value)
+        mostrarPeliculas(peliculaFiltradaPorBusquedaYGenero)
     }
 })
 
@@ -36,8 +38,27 @@ const inputBusqueda = document.getElementById("search")
 //muestra a traves de la fuencion mostrarPeliculas la pelicula que coincida con el titulo ingresado
 inputBusqueda.addEventListener("input",()=>{
     const peliculaFiltradaPorBusqueda = filtrarPeliculaPorNombre(pelis,inputBusqueda.value)
-    mostrarPeliculas(peliculaFiltradaPorBusqueda)
+    const peliculaFiltradaPorGeneroYBusqueda = filtrarPeliculaPorGenero(peliculaFiltradaPorBusqueda,$selectDefault.value)
+    mostrarPeliculas(peliculaFiltradaPorGeneroYBusqueda )
 })
 
+console.log(pelis)
+
+
+const array =[1,2,3,4,5]
+
+const arrayDuplicado = array.map(numero=>numero*2)
+
+const numeroMayorCuatro = arrayDuplicado.filter(numero => numero>4)
+console.log(numeroMayorCuatro)
+
+const mayorAMenor = array.sort()
+console.log(mayorAMenor)
+
+for (const numero of array) {
+    console.log(numero)
+}
+
+console.log(arrayDuplicado)
 
 
