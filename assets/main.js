@@ -1,25 +1,43 @@
-const pelis = peli      //data aux para no modificar el original
+import {recorrerPeliculas,obtenerGeneros,crearOptionsGeneros,filtrarPeliculaPorGenero,filtrarPeliculaPorNombre,mostrarPeliculas} from "./module/functions.js"
+
+//data aux para no modificar el original
+const pelis = peli
 
 const cont_peli = document.getElementById("pelicula")
 
-function crearCardPelicula (pelicula){
-    return `
-        <div class="flex flex-col h-80 w-52 text-white bg-purple-500">
-            <img src=${pelicula.image} alt="movie image">
-            <div class="flex flex-col grow  line-clamp-3 items-center">
-                <h3 class="font-semibold text-xl p-2 w-full text-center bg-purple-600">${pelicula.title}</h3>
-                <p class="flex grow items-center shadow-inner p-2">${pelicula.overview}</p> 
-            </div>
-        </div>
-    
-    `
-}
-
-function recorrerPeliculas(array){
-    let aux=""
-    for (const pelicula of array) { 
-        aux+=crearCardPelicula(pelicula)
-    }
-    return aux
-}
 cont_peli.innerHTML = recorrerPeliculas(pelis)
+
+
+
+// FILTRAR PELICULAS POR GENERO
+const $selectGenres = document.getElementById("genres")
+const $selectDefault = document.getElementById("selectDefault")
+
+//boton select -> hace un target value para recibir la opcion seleccionada, la filtra y la muestra
+$selectGenres.addEventListener("input",(e)=>{
+    const generoSeleccionado = e.target.value
+    if(generoSeleccionado==$selectDefault.value){
+        mostrarPeliculas(pelis)
+    }else{
+        const peliculaFiltradaPorGenero = filtrarPeliculaPorGenero(pelis,generoSeleccionado)
+        mostrarPeliculas(peliculaFiltradaPorGenero)
+    }
+})
+
+//a traves de la funcion crearOptions crea un option por cada genero de pelicula
+const generos = obtenerGeneros(pelis)
+$selectGenres.innerHTML += generos.reduce((templateAcumulado, genero)=> templateAcumulado += crearOptionsGeneros(genero),"")
+
+
+
+// FILTRAR PELICULAS POR NOMBRE
+const inputBusqueda = document.getElementById("search")
+
+//muestra a traves de la fuencion mostrarPeliculas la pelicula que coincida con el titulo ingresado
+inputBusqueda.addEventListener("input",()=>{
+    const peliculaFiltradaPorBusqueda = filtrarPeliculaPorNombre(pelis,inputBusqueda.value)
+    mostrarPeliculas(peliculaFiltradaPorBusqueda)
+})
+
+
+
